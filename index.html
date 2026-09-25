@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Keluarga Besar Nene Pala</title>
+<style>
+:root{
+  --forest:#173d2b;--green:#286044;--leaf:#6e8f55;--cream:#f5efdf;
+  --paper:#fffaf0;--wood:#704a2b;--gold:#c9a85a;--ink:#24352c;--muted:#6b756c;
+  --danger:#9b3d32;--shadow:0 12px 35px rgba(25,55,36,.16)
+}
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink);background:#dfe8d6}
+body{min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+#app{min-height:100vh;background:
+ radial-gradient(circle at 20% 10%,rgba(255,255,255,.55),transparent 28%),
+ linear-gradient(rgba(232,239,221,.72),rgba(213,225,205,.86)),
+ repeating-linear-gradient(45deg,rgba(91,116,70,.035) 0 2px,transparent 2px 8px)}
+.header{position:sticky;top:0;z-index:20;background:rgba(23,61,43,.96);color:white;border-bottom:2px solid var(--gold);box-shadow:0 5px 20px #173d2b33}
+.header-inner{max-width:900px;margin:auto;padding:14px 16px 10px;text-align:center}
+.header h1{margin:0;font-family:Georgia,serif;font-size:22px;letter-spacing:.4px}
+.header p{margin:3px 0 10px;color:#e7d8a7;font-size:12px}
+.nav{display:flex;gap:6px;overflow:auto;padding-bottom:2px;scrollbar-width:none}.nav::-webkit-scrollbar{display:none}
+.nav button{flex:0 0 auto;border:1px solid #d9bd70;background:#f5efdf;color:#244534;border-radius:18px;padding:8px 11px;font-weight:700;font-size:12px}
+.nav button.active{background:var(--gold);color:#173d2b}
+main{max-width:900px;margin:auto;padding:18px 13px 80px}
+.page{display:none}.page.active{display:block}
+.hero{min-height:235px;border-radius:28px;padding:28px 20px;display:flex;flex-direction:column;justify-content:end;position:relative;overflow:hidden;background:
+linear-gradient(180deg,#adc38e55,#173d2bcc),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='180' viewBox='0 0 240 180'%3E%3Cpath d='M15 175Q35 75 100 30M65 175Q80 100 165 0M145 175Q155 90 235 35' stroke='%233d5e39' stroke-width='12' fill='none' opacity='.35'/%3E%3Ccircle cx='42' cy='38' r='30' fill='%237b995d' opacity='.25'/%3E%3Ccircle cx='170' cy='48' r='45' fill='%237b995d' opacity='.2'/%3E%3C/svg%3E");
+background-size:cover;color:white;box-shadow:var(--shadow)}
+.hero:after{content:"🍃   🌿   🌱   🍃";position:absolute;top:14px;right:8px;font-size:26px;opacity:.7}
+.hero h2{font:700 34px Georgia,serif;margin:0 0 6px;position:relative;z-index:1}.hero p{margin:0;color:#f7edcf;position:relative;z-index:1}
+.section-title{font:700 21px Georgia,serif;margin:24px 2px 10px;color:var(--forest)}
+.card{background:rgba(255,250,240,.94);border:1px solid #d4c08b;border-radius:20px;padding:16px;box-shadow:var(--shadow);margin:10px 0}
+.wood{background:linear-gradient(#825a36,#633f24);color:#fff8e8;border:2px solid #caa86a}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{text-align:center;padding:17px;border-radius:18px;background:linear-gradient(145deg,#fffdf4,#e9eedc);border:1px solid #c8cda9}
+.stat b{display:block;font:700 29px Georgia,serif;color:var(--forest)}.stat span{font-size:11px;font-weight:800;color:var(--muted)}
+.btn{border:0;border-radius:13px;padding:10px 13px;background:var(--green);color:white;font-weight:800;margin:3px 2px}.btn.gold{background:var(--gold);color:#173d2b}.btn.gray{background:#7b827c}.btn.red{background:var(--danger)}.btn.small{padding:7px 9px;font-size:12px}
+input,textarea,select{width:100%;padding:11px;border:1px solid #c9c7ae;border-radius:12px;background:#fffdf7;margin:5px 0 9px;color:var(--ink)}
+textarea{min-height:80px;resize:vertical}label{font-size:12px;font-weight:800;color:#536156}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.photo{aspect-ratio:1;border-radius:15px;overflow:hidden;background:#dfe6d4;display:flex;align-items:center;justify-content:center;border:2px solid #d1bd80;position:relative}.photo img{width:100%;height:100%;object-fit:cover}
+.photo span{font-size:12px;color:#697565;text-align:center;padding:8px}
+.notice{padding:13px;border-left:5px solid var(--gold);background:#f7f1de;border-radius:12px;margin:8px 0}
+.hidden{display:none!important}.muted{color:var(--muted);font-size:13px}.row{display:flex;gap:8px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#173d2b;color:#fff;padding:12px 16px;border-radius:20px;z-index:99;box-shadow:var(--shadow);font-size:13px}
+.search{font-size:16px;border:2px solid #b6c59f}
+.member{background:#fffdf5;border:1px solid #d4c08b;border-radius:15px;padding:10px;margin:6px 0}
+.member b{color:var(--forest)}.tree-wrap{overflow:auto;border-radius:20px;background:linear-gradient(#dce9d0,#f5efdf);border:1px solid #c6b77d;min-height:300px;padding:16px}
+.tree{min-width:0;position:relative;padding:20px 10px 35px}
+.tree ul{display:flex;justify-content:center;gap:12px;margin:0;padding:0;list-style:none;position:relative}.children-grid{display:flex;flex-direction:column;gap:18px;margin-top:18px}.children-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.children-row .child-cell{flex:0 1 135px;max-width:145px;text-align:center}.child-branch{display:flex;flex-direction:column;align-items:center;gap:8px}.child-branch .node{width:100%;min-width:0}.child-branch .descendants{width:100%;}
+.tree>ul>li{padding-top:0}
+.tree li{position:relative;padding-top:25px}
+.tree li:before,.tree li:after{content:"";position:absolute;top:0;border-top:2px solid #8c6b3f;width:50%;height:25px}
+.tree li:before{right:50%}.tree li:after{left:50%}
+.tree li:only-child:before,.tree li:only-child:after{display:none}
+.tree li:first-child:before,.tree li:last-child:after{border:0}
+.tree li:first-child:after{border-radius:8px 0 0 0}.tree li:last-child:before{border-radius:0 8px 0 0}
+.tree ul ul:before{content:"";position:absolute;top:0;left:50%;height:25px;border-left:2px solid #8c6b3f}
+.node{display:inline-block;min-width:100px;max-width:150px;background:#fff8e7;border:2px solid #a77d43;border-radius:12px;padding:8px 9px;text-align:center;font-weight:800;box-shadow:0 5px 12px #5d492733;position:relative;z-index:2}.node.root{background:#dce9c9;border-color:var(--gold);font:700 20px Georgia,serif;min-width:170px}
+.node.hit{outline:4px solid #e8bf52;box-shadow:0 0 0 6px #e8bf5233}
+.tree-empty{text-align:center;padding:55px 15px;color:#66705f}
+.silsilah-stable{overflow-x:hidden!important;overflow-y:visible;min-height:0}
+.silsilah-stable .tree{min-width:0;padding:18px 4px 28px}
+.root-tree{text-align:center;margin-bottom:18px}
+.children-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative}
+.slot-card{min-width:0;position:relative;padding-top:18px}
+.slot-card:before{content:"";position:absolute;top:0;left:50%;height:18px;border-left:2px solid #8c6b3f}
+.slot-card>.node{width:100%;min-width:0;max-width:none}
+.slot-card>ul{margin-top:12px}
+.slot-card>ul>li{padding-top:18px}
+.empty-node{border-style:dashed;opacity:.82;background:#f4f0e2}
+.slot-empty{display:flex;flex-direction:column;gap:2px;font-size:12px;color:#756d5a}.slot-empty small{font-size:10px;font-weight:600;color:#9a927d}
+.node.hit{animation:none}
+@media(max-width:650px){.children-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.slot-card{padding-top:14px}.slot-card:before{height:14px}.node{font-size:12px;padding:8px 6px}.node.root{font-size:19px}}
+
+.kasbox{border:2px solid #b68f50;background:linear-gradient(145deg,#fffaf0,#e8ead8);border-radius:20px;padding:15px}.balance{font:700 24px Georgia,serif;color:var(--forest)}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{padding:8px;border-bottom:1px solid #ded8c3;text-align:left}th{background:#eef0df}
+.admin-nav{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.admin-nav button{padding:12px;border-radius:14px;border:1px solid #ccb879;background:#fff9e9;font-weight:800;color:#244534}
+.modal{position:fixed;inset:0;background:#10281dcc;z-index:50;display:flex;align-items:flex-end;justify-content:center}.modal>div{width:min(900px,100%);max-height:90vh;overflow:auto;background:#fffaf0;border-radius:25px 25px 0 0;padding:18px}
+.footer{text-align:center;color:#63705e;font-size:12px;padding:25px 5px}
+
+.sil-hero{display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#214f37,#52734b);color:#fffaf0;border-radius:24px;padding:18px;box-shadow:var(--shadow);border:1px solid #c9a85a}.sil-hero h2{margin:0;font:700 25px Georgia,serif}.sil-hero p{margin:4px 0 0;color:#e9e0c0}.leaf-badge,.root-tree-icon{width:54px;height:54px;border-radius:18px;background:#e9dfbd;color:#173d2b;display:grid;place-items:center;font-size:28px;flex:0 0 auto}.filter-row{display:flex;gap:6px;overflow:auto;padding-top:4px;scrollbar-width:none}.filter-row::-webkit-scrollbar{display:none}.filter{border:1px solid #c8bd9d;background:#fffdf7;color:#385340;border-radius:16px;padding:7px 10px;font-size:11px;font-weight:800;white-space:nowrap}.filter.active{background:#286044;color:white}.root-card{display:flex;align-items:center;gap:14px;margin:12px 0;background:#fffaf0;border:2px solid #c9a85a;border-radius:22px;padding:16px;box-shadow:var(--shadow)}.root-card small,.section-heading small{font-size:10px;letter-spacing:1.4px;font-weight:900;color:#75806f}.root-card h2{margin:2px 0;font:700 25px Georgia,serif;color:#173d2b}.root-card p{margin:0;color:#687268;font-size:12px}.stats-row,.admin-sil-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}.stats-row>div,.admin-sil-stats>div{text-align:center;background:#edf2e5;border:1px solid #c8d1bb;border-radius:15px;padding:10px}.stats-row b,.admin-sil-stats b{display:block;font:700 22px Georgia,serif;color:#214f37}.stats-row span,.admin-sil-stats span{font-size:10px;color:#687268;font-weight:800}.section-heading{display:flex;align-items:end;justify-content:space-between;gap:10px;margin:20px 2px 8px}.section-heading h2{margin:2px 0;font:700 23px Georgia,serif;color:#173d2b}.branches-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.branch-card{background:rgba(255,250,240,.96);border:1px solid #c9b77e;border-radius:19px;padding:11px;box-shadow:0 8px 22px rgba(25,55,36,.1);min-width:0}.branch-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}.branch-number{font-size:9px;letter-spacing:1px;font-weight:900;color:#7a6b4e}.branch-dot{font-size:16px}.member-main{width:100%;border:1px solid #b8c6aa;background:#eff4e9;border-radius:14px;padding:12px;text-align:left;color:#173d2b}.member-main strong{display:block;font-size:15px}.member-main small,.empty-slot small{display:block;font-size:10px;color:#70786d;margin-top:3px}.empty-slot{min-height:77px;border:1px dashed #c8bd9d;border-radius:14px;background:#f9f6e9;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#7b806f}.empty-slot span{font-size:22px;color:#b08a43}.empty-slot b{font-size:12px}.branch-actions{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}.descendants{margin-top:8px;border-top:1px solid #e2dbc8;padding-top:7px}.descendants>b{font-size:10px;color:#687268}.desc-row,.all-member,.result-card{width:100%;border:0;border-bottom:1px solid #e4ddcc;background:transparent;padding:8px 2px;text-align:left;color:#314638}.desc-row{display:flex;justify-content:space-between;font-size:11px}.desc-row span{color:#8b7650;font-size:9px}.all-member{display:flex;justify-content:space-between;align-items:center}.all-member small{display:block;color:#75806f;font-size:10px;margin-top:2px}.search-results{border:2px solid #c9a85a}.result-card{display:block;padding:11px;border-radius:12px;background:#f7f3e6;margin-top:6px}.result-card b,.result-card span,.result-card small{display:block}.result-card span{font-size:11px;color:#6c756b;margin-top:2px}.result-card small{font-size:10px;color:#8a7755;margin-top:3px}.member-detail{text-align:center}.detail-icon{font-size:35px;margin-bottom:4px}.member-detail>small{font-weight:900;color:#7d755f;letter-spacing:1px}.member-detail h2{font:700 29px Georgia,serif;color:#173d2b;margin:5px 0 16px}.detail-line{display:flex;justify-content:space-between;gap:15px;text-align:left;border-top:1px solid #e1dac6;padding:10px 0;font-size:12px}.detail-line span{text-align:right;color:#667168;max-width:65%}.detail-actions{margin-top:12px}.slot-admin{display:grid;grid-template-columns:75px 1fr auto;gap:5px;align-items:center;margin:6px 0}.slot-admin>span{font-size:10px;font-weight:900;color:#74694f}.slot-admin input{margin:0}.admin-sil-stats{margin-bottom:14px}
+@media(min-width:650px){.header-inner{padding-left:25px;padding-right:25px}.grid{grid-template-columns:repeat(4,1fr)}.admin-nav{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:430px){main{padding:12px 9px 70px}.hero h2{font-size:28px}.grid3{grid-template-columns:1fr}.photo-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* ===== POLISH & SAFETY LAYER ===== */
+html{scroll-behavior:smooth}
+body{overflow-x:hidden}
+button,a,input,textarea,select{touch-action:manipulation}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #d6b75c;outline-offset:2px}
+.nav button{min-height:38px}
+.card,.kasbox,.branch-card,.root-card,.sil-hero,.hero{transition:transform .18s ease,box-shadow .18s ease}
+@media (hover:hover){
+ .card:hover,.kasbox:hover,.branch-card:hover{box-shadow:0 14px 32px rgba(25,55,36,.14)}
+ .btn:hover{filter:brightness(1.06)}
+}
+.modal{padding:0 10px}
+.modal>div{box-shadow:0 -10px 35px rgba(0,0,0,.22)}
+.modal input,.modal textarea,.modal select{font-size:16px}
+@media(max-width:430px){
+ .header-inner{padding:11px 9px 8px}
+ .header h1{font-size:18px}
+ .header p{font-size:11px;margin-bottom:8px}
+ .nav{gap:5px}
+ .nav button{padding:7px 10px;font-size:11px}
+ .hero{min-height:220px;padding:22px 16px}
+ .section-title{font-size:19px}
+ .grid{gap:7px}
+ .grid3{gap:6px}
+ .stat{padding:12px 7px}
+ .stat b{font-size:21px}
+ .branches-grid{gap:7px}
+ .branch-card{padding:9px}
+ .member-main strong{font-size:13px;overflow-wrap:anywhere}
+ .sil-hero{padding:14px}
+ .sil-hero h2{font-size:20px}
+ .root-card{padding:13px}
+ .root-card h2{font-size:22px}
+ .leaf-badge,.root-tree-icon{width:46px;height:46px;font-size:23px}
+ .modal>div{max-height:92vh;border-radius:22px 22px 0 0;padding:15px}
+}
+@media print{
+ body,#app{background:white!important}
+ .header,.nav,.footer,.btn,.sil-tools,.admin-nav,#modal,#toast{display:none!important}
+ main{max-width:none;padding:0}
+ .page{display:none!important}
+ .page.active{display:block!important}
+ .card,.kasbox,.branch-card,.root-card{box-shadow:none!important;break-inside:avoid}
+}
+
+/* ===== SILSILAH KARTU BERTINGKAT ===== */
+.family-card{background:linear-gradient(145deg,#fffdf5,#eef3e6);border:1px solid #c7b77d;border-radius:20px;padding:12px;box-shadow:0 8px 22px rgba(25,55,36,.10);margin:9px 0}
+.family-card .family-title{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.family-card .family-icon{width:40px;height:40px;border-radius:13px;background:#dfead3;display:grid;place-items:center;font-size:22px;flex:0 0 auto}
+.family-card h3{margin:0;color:#173d2b;font:700 18px Georgia,serif}
+.family-card .family-meta{font-size:10px;color:#71806e;margin-top:2px}
+.family-parent{font-size:11px;color:#687268;background:#f4f0df;border-radius:10px;padding:7px;margin:7px 0}
+.family-children{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin-top:8px}
+.family-child{border:1px solid #b9c8ad;background:#f8fbf4;border-radius:14px;padding:10px;text-align:left;color:#173d2b;min-width:0}
+.family-child strong{display:block;font-size:13px;overflow-wrap:anywhere}
+.family-child small{display:block;color:#74806f;font-size:9px;margin-top:3px}
+.family-child:active{transform:scale(.98)}
+.family-back{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.family-path{font-size:10px;color:#7a745f;line-height:1.5;background:#faf6e8;border-radius:10px;padding:8px;margin-top:8px}
+.branch-card.clickable{cursor:pointer}
+@media(max-width:430px){.family-children{grid-template-columns:1fr}.family-card{padding:10px}.family-card h3{font-size:17px}}
+</style>
+</head>
+<body>
+<div id="app">
+<header class="header">
+ <div class="header-inner">
+  <h1 id="brand">🌳 KELUARGA BESAR NENE PALA</h1>
+  <p id="slogan">Bersatu Dalam Kasih Keluarga</p>
+  <nav class="nav" id="nav"></nav>
+ </div>
+</header>
+<main>
+<section id="home" class="page active"></section>
+<section id="silsilah" class="page"></section>
+<section id="jadwal" class="page"></section>
+<section id="kas" class="page"></section>
+<section id="admin" class="page"></section>
+<div class="footer">🌿 KELUARGA BESAR NENE PALA • Taman Keluarga Digital</div>
+</main>
+</div>
+<div id="modal" class="modal hidden"></div>
+<div id="toast" class="toast hidden"></div>
+
+<script>
+const KEY="nenePalaDataV1";
+const defaults={
+ identity:{name:"KELUARGA BESAR NENE PALA",slogan:"Bersatu Dalam Kasih Keluarga",location:"Manggi, Mamasa, Sulawesi Barat",kk:120,members:450,wa:"",fb:"",maps:"",bank:"",account:"",owner:""},
+ welcome:"Selamat Datang di Website Keluarga Besar Nene Pala. Semoga menjadi ruang untuk mengenal, menjaga, dan mempererat hubungan keluarga.",
+ infos:[],
+ messages:[
+  {title:"Pesan Keluarga",body:"Jaga kasih, hormati yang lebih tua, dan saling membantu dalam keluarga."},
+  {title:"Pesan Hari Ini",body:"Keluarga yang kuat tumbuh dari kebersamaan dan kepedulian."},
+  {title:"Renungan Keluarga",body:"Warisan terbaik adalah kasih dan hubungan baik antar generasi."}
+ ],
+ photos:["","","","","",""],
+ schedule:[],
+ silsilah:{root:"Nene Pala",people:Array.from({length:16},(_,i)=>({id:"slot"+(i+1),name:"",parent:"root",gen:2,slot:i+1}))},
+ kasNames:["Kas Keluarga","Kas Pembangunan","Kas Sosial","Kas Lainnya"],
+ kas:[
+  {in:[],out:[]},{in:[],out:[]},{in:[],out:[]},{in:[],out:[]}
+ ],
+ theme:{accent:"#286044"}
+};
+let data=load(), page="home", admin=false, kasLogin=false, msgIndex=0, silSearch="";
+function load(){
+  try{
+    const raw=localStorage.getItem(KEY);
+    const parsed=raw?JSON.parse(raw):structuredClone(defaults);
+    return parsed||structuredClone(defaults);
+  }catch(e){return structuredClone(defaults)}
+}
+function save(){
+  try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+  if(window.firebaseSaveData){ window.firebaseSaveData(data); }
+  return true;
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function money(n){return "Rp"+Number(n||0).toLocaleString("id-ID")}
+function toast(s){const x=document.getElementById("toast");x.textContent=s;x.classList.remove("hidden");setTimeout(()=>x.classList.add("hidden"),2200)}
+function go(p){page=p;document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(p).classList.add("active");renderAll();scrollTo(0,0)}
+function renderNav(){
+ const items=[["home","🏠 HOME"],["silsilah","🌳 SILSILAH"],["jadwal","📅 JADWAL"],["kas","💰 KAS"],["admin","🔐 ADMIN"]];
+ document.getElementById("nav").innerHTML=items.map(([id,t])=>`<button class="${page===id?"active":""}" onclick="go('${id}')">${t}</button>`).join("");
+ document.getElementById("brand").textContent="🌳 "+data.identity.name;
+ document.getElementById("slogan").textContent=data.identity.slogan;
+}
+function renderAll(){renderNav();renderHome();renderSilsilah();renderJadwal();renderKas();renderAdmin()}
+function renderHome(){
+ const i=data.identity, m=data.messages[msgIndex%3]||{title:"",body:""};
+ document.getElementById("home").innerHTML=`
+ <div class="hero"><h2>${esc(i.name)}</h2><p>${esc(i.slogan)}<br>📍 ${esc(i.location)}</p></div>
+ <h2 class="section-title">🌿 Selamat Datang</h2><div class="card">${esc(data.welcome)}</div>
+ <h2 class="section-title">📢 Info Keluarga</h2>
+ <div class="card">${data.infos.length?data.infos.map(x=>`<div class="notice"><b>${esc(x.title)}</b><br>${esc(x.body)}<br><small>${esc(x.date||"")}</small></div>`).join(""):"Belum ada info keluarga."}</div>
+ <h2 class="section-title">💬 ${esc(m.title)}</h2><div class="card">${esc(m.body)}<br><button class="btn small" onclick="msgIndex=(msgIndex+1)%3;renderHome()">Pesan Berikutnya</button></div>
+ <h2 class="section-title">📸 Galeri</h2><div class="photo-grid">${data.photos.map((x,n)=>x?`<div class="photo"><img src="${esc(x)}" alt="Foto ${n+1}"></div>`:`<div class="photo"><span>Foto ${n+1}<br>Belum diisi</span></div>`).join("")}</div>
+ <h2 class="section-title">👨‍👩‍👧 Data Keluarga</h2><div class="grid3"><div class="stat"><b>${Number(i.kk||0)}</b><span>KK</span></div><div class="stat"><b>${Number(i.members||0)}</b><span>ANGGOTA</span></div><div class="stat"><b>${activePeople().length}</b><span>DATA SILSILAH</span></div></div>
+ <h2 class="section-title">📞 Kontak</h2><div class="card">${i.wa?`<a class="btn" href="https://wa.me/${esc(i.wa)}" target="_blank">WhatsApp</a>`:""}${i.fb?`<a class="btn gray" href="${esc(i.fb)}" target="_blank">Facebook</a>`:""}${i.maps?`<a class="btn gold" href="${esc(i.maps)}" target="_blank">Google Maps</a>`:""}${i.bank?`<div class="notice"><b>${esc(i.bank)}</b><br>${esc(i.account)}<br>a.n. ${esc(i.owner)}</div>`:""}</div>`;
+}
+function ensureSilsilah(){
+ if(!data.silsilah||!Array.isArray(data.silsilah.people))data.silsilah=structuredClone(defaults.silsilah);
+ const slots=[];
+ for(let i=1;i<=16;i++){
+  let p=data.silsilah.people.find(x=>Number(x.slot)===i);
+  if(!p){p={id:"slot"+i,name:"",parent:"root",gen:2,slot:i};data.silsilah.people.push(p)}
+  p.slot=i;p.id=p.id||"slot"+i;p.parent=p.parent||"root";p.gen=generationOf(p.id);
+  slots.push(p);
+ }
+}
+function activePeople(){return data.silsilah.people.filter(p=>p.name&&p.name.trim())}
+function memberById(id){return data.silsilah.people.find(p=>p.id===id)}
+function memberChildren(id){return data.silsilah.people.filter(p=>p.parent===id&&p.name&&p.name.trim())}
+function generationOf(id,seen=new Set()){
+ if(id==="root")return 1;
+ if(seen.has(id))return 1;
+ seen.add(id);
+ const p=memberById(id);if(!p)return 2;
+ return Math.max(2,generationOf(p.parent||"root",seen)+1);
+}
+function genLabel(n){return n===1?"Pusat Keluarga":n===2?"Anak":n===3?"Cucu":n===4?"Cicit":`Generasi ${n}`}
+function pathFor(id){
+ const arr=[];let cur=memberById(id),guard=0;
+ while(cur&&guard++<30){arr.unshift(cur.name||"(belum diisi)");if(cur.parent==="root"){arr.unshift(data.silsilah.root);break}cur=memberById(cur.parent)}
+ return arr.join(" → ");
+}
+function descendants(id,depth=0,out=[]){
+ memberChildren(id).forEach(p=>{out.push({p,depth});descendants(p.id,depth+1,out)});return out;
+}
+function wouldCreateCycle(id,parent){
+ let cur=parent,guard=0;
+ while(cur&&cur!=="root"&&guard++<30){if(cur===id)return true;const p=memberById(cur);cur=p?.parent}
+ return false;
+}
+function renderSilsilah(){
+ ensureSilsilah();
+ const people=activePeople(), root=data.silsilah.root;
+ const q=silSearch.trim().toLowerCase();
+ const results=q?people.filter(p=>(p.name+" "+pathFor(p.id)).toLowerCase().includes(q)):[]; 
+ const branchCards=Array.from({length:16},(_,idx)=>{
+  const slot=idx+1,p=data.silsilah.people.find(x=>Number(x.slot)===slot), kids=p?memberChildren(p.id):[];
+  const name=p?.name?.trim();
+  return `<div class="branch-card ${name?'clickable':''}" ${name?`onclick="openMemberDetail('${p.id}')"`:""}>
+   <div class="branch-head"><span class="branch-number">CABANG ${slot}</span><span class="branch-dot">${name?"🌿":"○"}</span></div>
+   ${name?`<div class="member-main"><strong>${esc(name)}</strong><small>${genLabel(generationOf(p.id))}</small></div>`:`<div class="empty-slot"><span>＋</span><b>Belum diisi</b><small>Cabang ${slot}</small></div>`}
+   ${kids.length?`<div class="descendants"><b>Keturunan</b>${kids.map(c=>`<button class="desc-row" onclick="event.stopPropagation();openMemberDetail('${c.id}')"><span>${esc(c.name)}</span><span>${genLabel(generationOf(c.id))}</span></button>`).join("")}</div>`:""}
+  </div>`;
+ }).join("");
+ document.getElementById("silsilah").innerHTML=`
+ <div class="sil-hero"><div class="leaf-badge">🌿</div><div><h2>Silsilah Keluarga</h2><p>Jejak keluarga, generasi demi generasi.</p></div></div>
+ <div class="root-card"><div class="root-tree-icon">🌳</div><div><small>PUSAT KELUARGA</small><h2>${esc(root)}</h2><p>16 cabang keluarga utama</p></div></div>
+ <div class="stats-row"><div><b>${people.length}</b><span>ANGGOTA TERCATAT</span></div><div><b>16</b><span>CABANG UTAMA</span></div><div><b>${people.length?Math.max(...people.map(p=>generationOf(p.id))):1}</b><span>GENERASI</span></div></div>
+ <div class="card"><input class="search" value="${esc(silSearch)}" oninput="silSearch=this.value;renderSilsilah()" placeholder="🔎 Cari nama atau hubungan keluarga..."></div>
+ ${results.length?`<div class="card search-results"><b>Hasil pencarian</b>${results.map(p=>`<button class="result-card" onclick="openMemberDetail('${p.id}')"><b>${esc(p.name)}</b><span>${genLabel(generationOf(p.id))}</span><small>${esc(pathFor(p.id))}</small></button>`).join("")}</div>`:""}
+ <div class="section-heading"><div><small>POHON UTAMA</small><h2>16 Cabang Keluarga</h2></div><span class="muted">${people.length} anggota</span></div>
+ <div class="branches-grid">${branchCards}</div>`;
+}
+function openMemberDetail(id){
+ const p=memberById(id);if(!p)return;
+ const kids=memberChildren(id), parent=p.parent==="root"?data.silsilah.root:memberById(p.parent)?.name||"—";
+ openModal(`<div class="member-detail"><div class="detail-icon">🌿</div><small>${genLabel(generationOf(id))}</small><h2>${esc(p.name)}</h2><div class="detail-line"><b>Orang Tua</b><span>${esc(parent)}</span></div><div class="detail-line"><b>Hubungan</b><span>${esc(pathFor(id))}</span></div><div class="detail-line"><b>Keturunan</b><span>${kids.length} anggota</span></div>${kids.length?`<div class="detail-actions"><b>Daftar Keturunan</b>${kids.map(c=>`<button class="btn small" onclick="openMemberDetail('${c.id}')">${esc(c.name)}</button>`).join("")}</div>`:""}</div>`);
+}
+function openAddMember(){
+ const opts=data.silsilah.people.filter(x=>x.name&&x.name.trim()).map(x=>`<option value="${x.id}">${esc(x.name)} — ${genLabel(generationOf(x.id))}</option>`).join("");
+ openModal(`<h2>＋ Tambah Anggota</h2><label>Nama Anggota</label><input id="newName" placeholder="Nama lengkap"><label>Orang Tua</label><select id="newParent"><option value="root">${esc(data.silsilah.root)}</option>${opts}</select><button class="btn gold" onclick="addMember()">💾 Simpan Anggota</button>`);
+}
+function addMember(){
+ const name=document.getElementById("newName").value.trim(),parent=document.getElementById("newParent").value;
+ if(!name){toast("Nama harus diisi.");return}
+ const id="m"+Date.now();
+ data.silsilah.people.push({id,name,parent,gen:generationOf(parent)+1});
+ recalcGenerations();save();closeModal();toast("Anggota berhasil ditambahkan.");renderAll();
+}
+function openEditSlot(slot){const p=data.silsilah.people.find(x=>x.slot===slot);if(p)openEditMember(p.id)}
+function openEditMember(id){const p=data.silsilah.people.find(x=>x.id===id);if(!p)return;const opts=data.silsilah.people.filter(x=>x.id!==id&&x.name&&x.name.trim()).map(x=>`<option value="${x.id}" ${p.parent===x.id?'selected':''}>${esc(x.name)} — ${genLabel(generationOf(x.id))}</option>`).join("");openModal(`<h2>✏️ Edit Anggota</h2><label>Nama</label><input id="editName" value="${esc(p.name)}"><label>Orang Tua</label><select id="editParent"><option value="root" ${p.parent==='root'?'selected':''}>${esc(data.silsilah.root)}</option>${opts}</select><button class="btn gold" onclick="saveEditMember('${id}')">💾 Simpan Perubahan</button>`)}
+function saveEditMember(id){
+ const p=data.silsilah.people.find(x=>x.id===id),name=document.getElementById('editName').value.trim(),parent=document.getElementById('editParent').value;
+ if(!p||!name){toast('Nama harus diisi.');return}
+ if(wouldCreateCycle(id,parent)){toast('Hubungan orang tua tidak valid karena akan membuat lingkaran silsilah.');return}
+ p.name=name;p.parent=parent;recalcGenerations();save();closeModal();toast('Data anggota diperbarui.');renderAll();
+}
+function recalcGenerations(){ensureSilsilah();data.silsilah.people.forEach(p=>p.gen=generationOf(p.id))}
+function deleteMember(id){const p=data.silsilah.people.find(x=>x.id===id);if(!p)return;const hasKids=memberChildren(id).length;const text=hasKids?'Anggota ini masih memiliki keturunan. Hapus anggota ini saja? Keturunan TIDAK ikut dihapus.':'Hapus anggota ini dari silsilah?';openModal(`<h2>⚠️ Hapus Anggota</h2><p>${text}</p><button class="btn red" onclick="confirmDeleteMember('${id}')">Ya, Hapus Anggota</button>`)}
+function confirmDeleteMember(id){
+ const p=data.silsilah.people.find(x=>x.id===id);if(!p)return;
+ const newParent=p.parent||"root";
+ data.silsilah.people.forEach(x=>{if(x.parent===id)x.parent=newParent;});
+ if(p.slot){p.name="";p.parent="root";p.gen=2}
+ else data.silsilah.people=data.silsilah.people.filter(x=>x.id!==id);
+ recalcGenerations();save();closeModal();toast('Anggota berhasil dihapus. Keturunannya tetap dipertahankan.');renderAll();
+}
+function renderJadwal(){
+ document.getElementById("jadwal").innerHTML=`<h2 class="section-title">📅 Jadwal Keluarga</h2><div class="card"><p class="muted">Papan informasi kegiatan keluarga.</p>${data.schedule.length?data.schedule.map((x,n)=>`<div class="notice"><b>${esc(x.name)}</b><br>📅 ${esc(x.day)} • ⏰ ${esc(x.time)}<br>📍 ${esc(x.place)}<br>${esc(x.notes||"")}</div>`).join(""):"Belum ada jadwal."}</div>`;
+}
+function totals(k){let ins=k.in.reduce((s,x)=>s+Number(x.amount||0),0),outs=k.out.reduce((s,x)=>s+Number(x.amount||0),0);return {ins,outs,b:ins-outs}}
+function renderKas(){
+ const cards=data.kas.map((k,n)=>{let t=totals(k);return `<div class="kasbox"><h3>🌿 ${esc(data.kasNames[n])}</h3><div class="grid3"><div class="stat"><b>${money(t.ins)}</b><span>MASUK</span></div><div class="stat"><b>${money(t.outs)}</b><span>KELUAR</span></div><div class="stat"><b>${money(t.b)}</b><span>SALDO</span></div></div><div style="margin-top:10px"><button class="btn small" onclick="showKasDetail(${n})">📋 Riwayat & Laporan</button>${kasLogin?`<button class="btn gold small" onclick="editKas(${n})">⚙️ Kelola</button>`:""}</div></div>`}).join("");
+ document.getElementById("kas").innerHTML=`<h2 class="section-title">💰 Kas Keluarga</h2><div class="card"><p class="muted">Empat kas keluarga berdiri sendiri. Pengunjung dapat melihat, sedangkan perubahan memerlukan Login KAS.</p>${!kasLogin?`<button class="btn" onclick="loginKas()">🔐 Login KAS</button>`:`<button class="btn red" onclick="kasLogout()">🚪 Logout KAS</button>`}</div>${cards}`;
+}
+function loginKas(){openModal(`<h2>🔐 Login KAS</h2><input id="kasPass" type="password" placeholder="Password KAS"><button class="btn" onclick="if(document.getElementById('kasPass').value==='123456'){kasLogin=true;closeModal();toast('Login KAS berhasil.');renderAll()}else toast('Sandi KAS salah.')">Masuk</button>`)}
+function kasLogout(){kasLogin=false;toast("Anda telah keluar dari Pengaturan KAS.");renderAll()}
+function showKasDetail(n){
+  const k=data.kas[n],t=totals(k);
+  const rows=[...k.in.map(x=>({...x,type:"Pemasukan"})),...k.out.map(x=>({...x,type:"Pengeluaran"}))]
+    .sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+  const allRows=rows.map(rowHTML).join("");
+  openModal(`<h2>💰 ${esc(data.kasNames[n])}</h2>
+  <div class="grid3"><div class="stat"><b>${money(t.ins)}</b><span>PEMASUKAN</span></div><div class="stat"><b>${money(t.outs)}</b><span>PENGELUARAN</span></div><div class="stat"><b>${money(t.b)}</b><span>SALDO</span></div></div>
+  <h3>Riwayat Transaksi</h3><input id="kasSearch" oninput="filterKasRows()" placeholder="🔎 Nama / tanggal / keterangan...">
+  <div id="kasRows">${rows.length?rows.slice(0,5).map(rowHTML).join(""):"<div class='member'>Belum ada transaksi.</div>"}</div>
+  ${rows.length>5?`<button class="btn gray" onclick="showAllKasRows(${n})">Lihat semua ${rows.length} transaksi</button>`:""}
+  <br><button class="btn gold" onclick="window.print()">🖨️ Cetak / PDF</button>`);
+  window.__kasRowsCache={n,html:allRows};
+}
+function showAllKasRows(n){
+  if(!window.__kasRowsCache||window.__kasRowsCache.n!==n) return;
+  document.getElementById("kasRows").innerHTML=window.__kasRowsCache.html;
+}
+function rowHTML(x){return `<div class="notice"><b>${esc(x.type)} • ${money(x.amount)}</b><br>${esc(x.name||"")} • ${esc(x.date||"")}<br>${esc(x.note||"")}</div>`}
+function filterKasRows(){let q=document.getElementById("kasSearch").value.toLowerCase();document.querySelectorAll("#kasRows .notice").forEach(x=>x.style.display=x.textContent.toLowerCase().includes(q)?"block":"none")}
+function editKas(n){
+ let k=data.kas[n];openModal(`<h2>⚙️ Kelola ${esc(data.kasNames[n])}</h2>
+ <label>Nama Kas</label><input id="kn" value="${esc(data.kasNames[n])}">
+ <h3>Tambah Pemasukan</h3><input id="inName" placeholder="Nama"><input id="inAmt" type="number" placeholder="Jumlah"><input id="inDate" type="date" value="${new Date().toISOString().slice(0,10)}"><input id="inNote" placeholder="Keterangan"><button class="btn" onclick="addTx(${n},'in')">+ Pemasukan</button>
+ <h3>Tambah Pengeluaran</h3><input id="outName" placeholder="Nama"><input id="outAmt" type="number" placeholder="Jumlah"><input id="outDate" type="date" value="${new Date().toISOString().slice(0,10)}"><input id="outNote" placeholder="Keterangan"><button class="btn" onclick="addTx(${n},'out')">+ Pengeluaran</button>
+ <h3>Riwayat Pemasukan</h3>${k.in.length?k.in.map((x,i)=>`<div class="notice">${rowHTML(x)}<button class="btn red small" onclick="delTx(${n},'in',${i})">Hapus</button></div>`).join(""):"Belum ada."}
+ <h3>Riwayat Pengeluaran</h3>${k.out.length?k.out.map((x,i)=>`<div class="notice">${rowHTML(x)}<button class="btn red small" onclick="delTx(${n},'out',${i})">Hapus</button></div>`).join(""):"Belum ada."}
+ <button class="btn gold" onclick="saveKasName(${n})">💾 SAVE KAS</button>`);
+}
+function addTx(n,type){
+ const p=type==="in"?["inName","inAmt","inDate","inNote"]:["outName","outAmt","outDate","outNote"];
+ const amount=Number(document.getElementById(p[1]).value||0);
+ const x={name:document.getElementById(p[0]).value.trim(),amount,date:document.getElementById(p[2]).value||new Date().toISOString().slice(0,10),note:document.getElementById(p[3]).value.trim()};
+ if(!amount||amount<0){toast("Jumlah harus lebih dari 0.");return}
+ data.kas[n][type].push(x);save();editKas(n);toast("Transaksi disimpan.");
+}
+function delTx(n,type,i){data.kas[n][type].splice(i,1);save();editKas(n);toast("Transaksi dihapus.")}
+function saveKasName(n){data.kasNames[n]=document.getElementById("kn").value||data.kasNames[n];save();closeModal();toast("Kas berhasil disimpan.");renderAll()}
+function renderAdmin(){
+ const a=document.getElementById("admin");
+ if(!admin){a.innerHTML=`<h2 class="section-title">🔐 Admin</h2><div class="card"><p>Rumah pengelola Taman Keluarga Nene Pala.</p><button class="btn" onclick="loginAdmin()">Masuk Admin</button></div>`;return}
+ a.innerHTML=`<h2 class="section-title">🏡 Rumah Pengelola Taman</h2><div class="card"><div class="row"><b>Admin aktif</b><button class="btn red small" onclick="adminLogout()">Logout</button></div></div>
+ <div class="admin-nav">
+ <button onclick="adminIdentity()">🏷️ Identitas</button><button onclick="adminHome()">🏠 Home</button><button onclick="adminSilsilah()">🌳 Silsilah</button><button onclick="adminJadwal()">📅 Jadwal</button><button onclick="adminGaleri()">🖼️ Galeri</button><button onclick="adminKontak()">📞 Kontak</button><button onclick="adminKas()">💰 Kas</button><button onclick="adminData()">💾 Database</button>
+ </div>
+ <div class="card"><b>🎨 Tampilan</b><p class="muted">Konsep aktif: Taman Keluarga Natural. Warna dan dekorasi inti dijaga agar ringan dan nyaman.</p></div>`;
+}
+function loginAdmin(){openModal(`<h2>🔐 Login Admin</h2><input id="adminPass" type="password" placeholder="Password Admin"><button class="btn" onclick="if(document.getElementById('adminPass').value==='910502'){admin=true;closeModal();toast('Login Admin berhasil.');renderAll()}else toast('Sandi Admin salah.')">Masuk</button>`)}
+function adminLogout(){admin=false;toast("Anda telah keluar dari Admin.");renderAll()}
+function adminIdentity(){let i=data.identity;openModal(`<h2>🏷️ Identitas Website</h2><label>Nama</label><input id="an" value="${esc(i.name)}"><label>Slogan</label><input id="as" value="${esc(i.slogan)}"><label>Lokasi</label><input id="al" value="${esc(i.location)}"><label>Jumlah KK</label><input id="akk" type="number" value="${i.kk}"><label>Jumlah Anggota</label><input id="am" type="number" value="${i.members}"><button class="btn gold" onclick="saveIdentity()">💾 Simpan</button>`)}
+function saveIdentity(){Object.assign(data.identity,{name:an.value,slogan:as.value,location:al.value,kk:Number(akk.value),members:Number(am.value)});save();closeModal();toast("Identitas disimpan.");renderAll()}
+function adminHome(){openModal(`<h2>🏠 Kelola Home</h2><label>Selamat Datang</label><textarea id="wel">${esc(data.welcome)}</textarea><button class="btn" onclick="data.welcome=wel.value;save();closeModal();toast('Home disimpan.');renderAll()">Simpan</button><h3>Info Minggu Ini</h3>${data.infos.map((x,n)=>`<div class="notice"><b>${esc(x.title)}</b><br>${esc(x.body)}<br><button class="btn red small" onclick="data.infos.splice(${n},1);save();adminHome()">Hapus</button></div>`).join("")}<input id="it" placeholder="Judul info"><textarea id="ib" placeholder="Isi info"></textarea><button class="btn gold" onclick="data.infos.push({title:it.value,body:ib.value,date:new Date().toLocaleDateString('id-ID')});save();adminHome()">+ Tambah Info</button><h3>3 Pesan Hari Ini</h3>${data.messages.map((x,n)=>`<div class="notice"><input id="mt${n}" value="${esc(x.title)}"><textarea id="mb${n}">${esc(x.body)}</textarea></div>`).join("")}<button class="btn gold" onclick="data.messages=data.messages.map((x,n)=>({title:document.getElementById('mt'+n).value,body:document.getElementById('mb'+n).value}));save();closeModal();toast('Pesan disimpan.');renderAll()">Simpan 3 Pesan</button>`)}
+function adminSilsilah(){ensureSilsilah();const people=activePeople();openModal(`<h2>🌳 Pengaturan Silsilah</h2><div class="admin-sil-stats"><div><b>${people.length}</b><span>Anggota</span></div><div><b>16</b><span>Cabang</span></div><div><b>${people.length?Math.max(...people.map(p=>generationOf(p.id))):1}</b><span>Generasi</span></div></div><label>Nama Pusat Keluarga</label><input id="rootName" value="${esc(data.silsilah.root)}"><div class="card"><b>16 Cabang Anak</b><p class="muted">Isi nama anak pada slot yang tersedia. Slot utama tidak dihapus agar 16 cabang keluarga tetap tersedia.</p></div><div id="peopleForm">${data.silsilah.people.filter(p=>p.slot).map(p=>`<div class="slot-admin"><span>Cabang ${p.slot}</span><input class="slot-name" data-slot="${p.slot}" value="${esc(p.name)}" placeholder="Nama Anak ${p.slot}">${p.name?`<button class="btn small" onclick="openEditMember('${p.id}')">✏️</button>`:""}</div>`).join("")}</div><div class="card"><b>Anggota Keturunan</b>${people.filter(p=>!p.slot).map(p=>`<div class="member"><div class="row"><span><b>${esc(p.name)}</b><br><small>${genLabel(generationOf(p.id))} • ${esc(pathFor(p.id))}</small></span><span><button class="btn small" onclick="openEditMember('${p.id}')">✏️</button><button class="btn red small" onclick="deleteMember('${p.id}')">🗑️</button></span></div></div>`).join("")||`<p class="muted">Belum ada cucu/cicit. Tambahkan dari tombol “Tambah Anggota”.</p>`}</div><button class="btn" onclick="openAddMember()">＋ Tambah Anggota</button><button class="btn gold" onclick="saveSilsilahAdmin()">💾 Simpan Silsilah</button>`)}
+function saveSilsilahAdmin(){data.silsilah.root=document.getElementById('rootName').value.trim()||'Nene Pala';document.querySelectorAll('.slot-name').forEach(inp=>{const p=data.silsilah.people.find(x=>x.slot===Number(inp.dataset.slot));if(p){p.name=inp.value.trim();p.parent='root'}});recalcGenerations();save();closeModal();toast('Silsilah berhasil disimpan.');renderAll();}
+function adminJadwal(){openModal(`<h2>📅 Kelola Jadwal</h2>${data.schedule.map((x,n)=>`<div class="notice"><b>${esc(x.name)}</b> — ${esc(x.day)} ${esc(x.time)}<br><button class="btn red small" onclick="data.schedule.splice(${n},1);save();adminJadwal()">Hapus</button></div>`).join("")}<input id="jn" placeholder="Nama kegiatan"><select id="jd"><option>Minggu</option><option>Rabu</option><option>Kamis</option><option>Sabtu</option></select><input id="jt" placeholder="08:00 WITA"><input id="jp" placeholder="Tempat"><textarea id="jo" placeholder="Keterangan"></textarea><button class="btn gold" onclick="data.schedule.push({name:jn.value,day:jd.value,time:jt.value,place:jp.value,notes:jo.value});save();adminJadwal()">+ Tambah Jadwal</button>`)}
+function adminGaleri(){openModal(`<h2>🖼️ Galeri — 6 Slot</h2><p class="muted">Masukkan URL gambar atau data gambar. Untuk HP, URL gambar publik paling ringan.</p>${data.photos.map((x,n)=>`<label>Foto ${n+1}</label><input id="ph${n}" value="${esc(x)}" placeholder="https://..."><button class="btn small" onclick="previewPhoto(${n})">Lihat</button>`).join("")}<button class="btn gold" onclick="data.photos=data.photos.map((x,n)=>document.getElementById('ph'+n).value);save();closeModal();toast('Galeri disimpan.');renderAll()">Simpan Galeri</button>`)}
+function previewPhoto(n){let u=document.getElementById("ph"+n).value;if(u)window.open(u,"_blank")}
+function adminKontak(){let i=data.identity;openModal(`<h2>📞 Kontak & Rekening</h2><label>WhatsApp (contoh 628...)</label><input id="iwa" value="${esc(i.wa)}"><label>Facebook URL</label><input id="ifb" value="${esc(i.fb)}"><label>Google Maps URL</label><input id="imp" value="${esc(i.maps)}"><label>Bank</label><input id="ibank" value="${esc(i.bank)}"><label>Nomor Rekening</label><input id="iacc" value="${esc(i.account)}"><label>Nama Pemilik</label><input id="iown" value="${esc(i.owner)}"><button class="btn gold" onclick="Object.assign(data.identity,{wa:iwa.value,fb:ifb.value,maps:imp.value,bank:ibank.value,account:iacc.value,owner:iown.value});save();closeModal();toast('Kontak disimpan.');renderAll()">Simpan</button>`)}
+function adminKas(){openModal(`<h2>💰 Pengaturan Kas</h2><p class="muted">Perubahan nama kas dari sini juga tersimpan pada halaman Kas.</p>${data.kasNames.map((x,n)=>`<label>Kas ${n+1}</label><input id="nk${n}" value="${esc(x)}">`).join("")}<button class="btn gold" onclick="data.kasNames=data.kasNames.map((x,n)=>document.getElementById('nk'+n).value||x);save();closeModal();toast('Nama Kas disimpan.');renderAll()">Simpan</button>`)}
+function adminData(){openModal(`<h2>💾 Data & Database</h2><button class="btn" onclick="downloadBackup()">💾 Backup JSON</button><label>Restore JSON</label><input id="restoreFile" type="file" accept=".json" onchange="restoreBackup(event)"><button class="btn gray" onclick="location.reload()">🔄 Refresh</button><button class="btn red" onclick="deleteAll()">🗑️ Hapus Semua Data</button><p class="muted">Hapus semua memerlukan teks HAPUS SEMUA dan hanya mengembalikan data website ke keadaan awal.</p>`)}
+function downloadBackup(){let b=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="backup-keluarga-nene-pala.json";a.click();URL.revokeObjectURL(a.href)}
+function restoreBackup(e){
+ const f=e.target.files[0];if(!f)return;
+ const r=new FileReader();
+ r.onload=()=>{
+  try{
+   const incoming=JSON.parse(r.result);
+   if(!incoming||typeof incoming!=="object"||!incoming.identity||!incoming.silsilah) throw new Error("format");
+   data=incoming;normalizeData();save();closeModal();toast("Backup berhasil dipulihkan.");renderAll();
+  }catch{toast("File JSON tidak valid atau bukan backup website ini.")}
+ };
+ r.readAsText(f);
+}
+function deleteAll(){openModal(`<h2>⚠️ Hapus Semua Data</h2><p>Tindakan ini mengembalikan data ke kondisi awal.</p><input id="del" placeholder="Ketik HAPUS SEMUA"><button class="btn red" onclick="if(del.value==='HAPUS SEMUA'){data=structuredClone(defaults);save();closeModal();toast('Data dikembalikan ke awal.');renderAll()}else toast('Teks konfirmasi salah.')">Konfirmasi Hapus</button>`)}
+function openModal(html){document.getElementById("modal").innerHTML=`<div>${html}<div style="text-align:right;margin-top:15px"><button class="btn gray" onclick="closeModal()">Tutup</button></div></div>`;document.getElementById("modal").classList.remove("hidden")}
+function closeModal(){document.getElementById("modal").classList.add("hidden");document.getElementById("modal").innerHTML=""}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!document.getElementById("modal").classList.contains("hidden"))closeModal()});
+
+window.getCurrentData=function(){return data;};
+window.dataFromFirebase=function(remote){
+  try{
+    data=remote||data;
+    normalizeData();
+    try{localStorage.setItem(KEY,JSON.stringify(data));}catch(e){}
+    renderAll();
+    toast("Data online diperbarui.");
+  }catch(e){console.error("Gagal menerapkan data Firebase:",e);}
+};
+
+window.addEventListener("storage",()=>{data=load();renderAll()});
+normalizeData();
+renderAll();
+</script>
+
+<!-- FIREBASE FIRESTORE ONLINE SYNC -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+import { getFirestore, doc, setDoc, onSnapshot }
+  from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBNJaaOlNoO7m3kTe4v_S5TrxI9SXtW2mk",
+  authDomain: "jualan-web-5cdfc.firebaseapp.com",
+  projectId: "jualan-web-5cdfc",
+  storageBucket: "jualan-web-5cdfc.firebasestorage.app",
+  messagingSenderId: "174489399548",
+  appId: "1:174489399548:web:ba054934fe3de1daa12779"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const dataRef = doc(db, "nenePala", "data");
+let firstSnapshot = true;
+
+window.firebaseSaveData = async function(payload){
+  try{
+    await setDoc(dataRef, payload);
+  }catch(error){
+    console.error("Firebase save error:", error);
+    if(typeof toast==="function") toast("Gagal menyimpan ke Firebase.");
+  }
+};
+
+onSnapshot(dataRef, (snapshot)=>{
+  if(snapshot.exists()){
+    if(window.dataFromFirebase) window.dataFromFirebase(snapshot.data());
+  }else if(firstSnapshot){
+    if(window.getCurrentData) window.firebaseSaveData(window.getCurrentData());
+  }
+  firstSnapshot=false;
+}, (error)=>{
+  console.error("Firebase realtime error:", error);
+  if(typeof toast==="function") toast("Firebase belum terhubung. Periksa Firestore Rules.");
+});
+</script>
+
+</body>
+</html>
